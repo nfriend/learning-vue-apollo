@@ -1,18 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Release
+      v-for="release in releases"
+      :release="release"
+      :key="release.tagName"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Release from './components/Release.vue';
+import gql from 'graphql-tag';
 
 export default {
-  name: "App",
+  name: 'App',
+  apollo: {
+    releases: {
+      query: gql`
+        {
+          project(fullPath: "gitlab-org/gitlab") {
+            releases(first: 2) {
+              nodes {
+                name
+                tagName
+              }
+            }
+          }
+        }
+      `,
+      update: data => data.project.releases.nodes,
+    },
+  },
   components: {
-    HelloWorld
-  }
+    Release,
+  },
 };
 </script>
 
