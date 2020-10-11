@@ -1,0 +1,15 @@
+default:
+  image: node:latest
+
+pages:
+  cache:
+    paths:
+    - node_modules/
+  script:
+    - yarn install
+    - yarn run build
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
