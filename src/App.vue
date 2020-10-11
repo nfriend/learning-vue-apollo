@@ -1,38 +1,26 @@
 <template>
   <div id="app">
-    <Release
-      v-for="release in releases"
-      :release="release"
-      :key="release.tagName"
-    />
+    <div v-if="$apollo.queries.releases.loading">Loading...</div>
+    <div v-else>
+      <Releases />
+    </div>
   </div>
 </template>
 
 <script>
-import Release from './components/Release.vue';
-import gql from 'graphql-tag';
+import Releases from './components/Releases.vue';
+import ReleasesQuery from './graphql/releases.query.graphql';
 
 export default {
   name: 'App',
   apollo: {
     releases: {
-      query: gql`
-        {
-          project(fullPath: "gitlab-org/gitlab") {
-            releases(first: 2) {
-              nodes {
-                name
-                tagName
-              }
-            }
-          }
-        }
-      `,
+      query: ReleasesQuery,
       update: data => data.project.releases.nodes,
     },
   },
   components: {
-    Release,
+    Releases,
   },
 };
 </script>

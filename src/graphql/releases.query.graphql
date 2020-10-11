@@ -1,0 +1,11 @@
+{
+  project(fullPath: "gitlab-org/gitlab") {
+    releases(first: 2) {
+      nodes {
+        name
+        tagName
+        description
+      }
+    }
+  }
+}

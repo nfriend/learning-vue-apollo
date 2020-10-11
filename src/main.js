@@ -3,6 +3,9 @@ import VueApollo from 'vue-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import App from './App.vue';
+
+Vue.use(VueApollo);
 
 // HTTP connection to the API
 const httpLink = createHttpLink({
@@ -17,15 +20,18 @@ const cache = new InMemoryCache();
 const apolloClient = new ApolloClient({
   link: httpLink,
   cache,
+  resolvers: {},
+});
+
+apolloClient.cache.writeData({
+  data: {
+    text: 'Hello, world!',
+  },
 });
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
 });
-
-Vue.use(VueApollo);
-
-import App from './App.vue';
 
 Vue.config.productionTip = false;
 
