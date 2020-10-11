@@ -1,13 +1,20 @@
 <template>
   <div>
-    <b>{{ text }}</b>
+    <h2>Some releases from GitLab's GraphQL endpoint:</h2>
     <div v-for="release in releases" :key="release.tagName">
-      <h2>{{ release.name }}</h2>
-      <p>{{ release.tagName }}</p>
+      <p>
+        <b>{{ release.name }}:</b>
+        {{ release.tagName }}
+      </p>
     </div>
     <hr />
+    <h2>Some local state:</h2>
+    <p>
+      text:
+      <b>{{ text }}</b>
+    </p>
     <form @submit.prevent="onFormSubmit">
-      <input v-model="textToAdd" />
+      <input v-model="textToAdd" style="margin-right: .5rem" />
       <button>Add text</button>
     </form>
   </div>
