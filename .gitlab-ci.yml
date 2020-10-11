@@ -8,6 +8,8 @@ pages:
   script:
     - yarn install
     - yarn run build
+    - rm -rf public
+    - mv dist public
   artifacts:
     paths:
       - public
