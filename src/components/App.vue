@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Releases from './components/Releases.vue';
-import ReleasesQuery from './graphql/releases.query.graphql';
+import Releases from './Releases.vue';
+import ReleasesQuery from '../graphql/queries/releases.query.graphql';
 
 export default {
   name: 'App',

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import releasesQuery from '../graphql/releases.query.graphql';
-import textQuery from '../graphql/text.query.graphql';
-import addToTextMutation from '../graphql/addToText.mutation.graphql';
+import releasesQuery from '../graphql/queries/releases.query.graphql';
+import textQuery from '../graphql/queries/text.query.graphql';
+import addToTextMutation from '../graphql/mutations/addToText.mutation.graphql';
 
 export default {
   data() {
