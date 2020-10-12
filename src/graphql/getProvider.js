@@ -1,9 +1,13 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { addToTextResolver } from './resolvers/add_to_text';
+import {
+  createHttpLink,
+  InMemoryCache,
+  ApolloClient,
+} from '@apollo/client/core';
+import { resolvers } from './resolvers/index';
+import { typeDefs } from './typeDefs.graphql';
+import textQuery from './queries/text.query.graphql';
 
 Vue.use(VueApollo);
 
@@ -20,14 +24,14 @@ const cache = new InMemoryCache();
 const apolloClient = new ApolloClient({
   link: httpLink,
   cache,
-  resolvers: {
-    Mutation: {
-      addToText: addToTextResolver,
-    },
-  },
+  typeDefs,
+  resolvers,
 });
 
-apolloClient.cache.writeData({
+console.log('apolloClient:', apolloClient);
+
+apolloClient.writeQuery({
+  query: textQuery,
   data: {
     text: 'Hello, world!',
   },

@@ -5,6 +5,7 @@
         name
         tagName
         description
+        isAwesome @client
       }
     }
   }

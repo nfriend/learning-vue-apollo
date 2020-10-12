@@ -5,6 +5,13 @@
       <p>
         <b>{{ release.name }}:</b>
         {{ release.tagName }}
+        <em v-if="release.isAwesome">(Awesome)</em>
+        <em v-else>(Not awesome)</em>
+        <button
+          @click="onToggleAwesomenessClick(release.tagName, release.isAwesome)"
+        >
+          Toggle awesomeness
+        </button>
       </p>
     </div>
     <hr />
@@ -24,6 +31,7 @@
 import releasesQuery from '../graphql/queries/releases.query.graphql';
 import textQuery from '../graphql/queries/text.query.graphql';
 import addToTextMutation from '../graphql/mutations/addToText.mutation.graphql';
+import updateReleaseAwesomeness from '../graphql/mutations/updateReleaseAwesomeness.graphql';
 
 export default {
   data() {
@@ -40,6 +48,12 @@ export default {
     text: textQuery,
   },
   methods: {
+    onToggleAwesomenessClick(tagName, isCurrentlyAwesome) {
+      this.$apollo.mutate({
+        mutation: updateReleaseAwesomeness,
+        variables: { tagName, isAwesome: !isCurrentlyAwesome },
+      });
+    },
     onFormSubmit() {
       this.$apollo.mutate({
         mutation: addToTextMutation,

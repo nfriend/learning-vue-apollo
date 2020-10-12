@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './components/App.vue';
-import { apolloProvider } from './graphql';
+import { apolloProvider } from './graphql/getProvider';
 
 Vue.config.productionTip = false;
 

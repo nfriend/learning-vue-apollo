@@ -1,0 +1,3 @@
+mutation($tagName: String!, $isAwesome: Boolean!) {
+  updateReleaseAwesomeness(tagName: $tagName, isAwesome: $isAwesome) @client
+}
