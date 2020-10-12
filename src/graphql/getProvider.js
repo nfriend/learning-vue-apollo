@@ -28,8 +28,6 @@ const apolloClient = new ApolloClient({
   resolvers,
 });
 
-console.log('apolloClient:', apolloClient);
-
 apolloClient.writeQuery({
   query: textQuery,
   data: {
