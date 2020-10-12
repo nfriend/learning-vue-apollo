@@ -1,12 +1,23 @@
 default:
-  image: node:latest
-
-pages:
+  image: node:14.13.1
+  before_script:
+    - yarn install --frozen-lockfile
   cache:
     paths:
     - node_modules/
+
+stages:
+  - test
+  - deploy
+
+lint:
+  stage: test
   script:
-    - yarn install
+    - yarn run lint
+
+pages:
+  stage: deploy
+  script:
     - yarn run build
     - rm -rf public
     - mv dist public
