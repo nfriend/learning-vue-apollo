@@ -1,0 +1,4 @@
+fragment Release on Release {
+  tagName
+  isAwesome @client
+}

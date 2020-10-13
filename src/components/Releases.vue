@@ -41,6 +41,9 @@ export default {
     };
   },
   apollo: {
+    // TO FIGURE OUT: Is this the proper way to get
+    // data from a previously-executed query? (In this example,
+    // a query that has already been executed by the parent component.)
     releases: {
       query: releasesQuery,
       update: data => data.project?.releases.nodes || [],
@@ -60,6 +63,8 @@ export default {
         mutation: addToTextMutation,
         variables: { newText: this.textToAdd },
       });
+
+      this.textToAdd = '';
     },
   },
 };

@@ -1,11 +1,10 @@
+#import "../fragments/release.fragment.graphql"
+
 {
   project(fullPath: "gitlab-org/gitlab") {
     releases(first: 5) {
       nodes {
-        name
-        tagName
-        description
-        isAwesome @client
+        ...Release
       }
     }
   }

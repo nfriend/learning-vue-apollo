@@ -7,6 +7,7 @@ import {
 } from '@apollo/client/core';
 import { resolvers } from './resolvers/index';
 import { typeDefs } from './typeDefs.graphql';
+import { typePolicies } from './getTypePolicies';
 import textQuery from './queries/text.query.graphql';
 
 Vue.use(VueApollo);
@@ -18,7 +19,7 @@ const httpLink = createHttpLink({
 });
 
 // Cache implementation
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({ typePolicies });
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
