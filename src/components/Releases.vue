@@ -5,8 +5,10 @@
       <p>
         <b>{{ release.name }}:</b>
         {{ release.tagName }}
-        <em v-if="release.isAwesome">(Awesome)</em>
-        <em v-else>(Not awesome)</em>
+        <span class="awesome-indicator inline-block">
+          <b v-if="release.isAwesome">(Awesome! 🎉)</b>
+          <em v-else>(Not awesome <span class="not-italic">🙁</span>)</em>
+        </span>
         <button
           class="ml-2"
           @click="onToggleAwesomenessClick(release.tagName, release.isAwesome)"
@@ -69,3 +71,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.awesome-indicator {
+  width: 130px;
+}
+</style>
