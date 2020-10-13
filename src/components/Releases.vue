@@ -1,13 +1,14 @@
 <template>
   <div>
     <h2>Some releases from GitLab's GraphQL endpoint:</h2>
-    <div v-for="release in releases" :key="release.tagName">
+    <div v-for="release in releases" :key="release.tagName" class="mb-2">
       <p>
         <b>{{ release.name }}:</b>
         {{ release.tagName }}
         <em v-if="release.isAwesome">(Awesome)</em>
         <em v-else>(Not awesome)</em>
         <button
+          class="ml-2"
           @click="onToggleAwesomenessClick(release.tagName, release.isAwesome)"
         >
           Toggle awesomeness
@@ -21,7 +22,7 @@
       <b>{{ text }}</b>
     </p>
     <form @submit.prevent="onFormSubmit">
-      <input v-model="textToAdd" style="margin-right: .5rem" />
+      <input v-model="textToAdd" class="mt-2 mb-3" />
       <button>Add text</button>
     </form>
   </div>

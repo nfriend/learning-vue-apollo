@@ -1,3 +1,3 @@
 export const isAwesome = release => {
-  return release.isAwesome || false;
+  return release.isAwesome != null ? release.isAwesome : true;
 };
