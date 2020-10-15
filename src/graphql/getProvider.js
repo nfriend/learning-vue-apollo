@@ -8,7 +8,7 @@ import {
 import { resolvers } from './resolvers/index';
 import { typeDefs } from './typeDefs.graphql';
 import { typePolicies } from './getTypePolicies';
-import textQuery from './queries/text.query.graphql';
+import allLocalDataQuery from './queries/allLocalData.query.graphql';
 
 Vue.use(VueApollo);
 
@@ -30,9 +30,15 @@ const apolloClient = new ApolloClient({
 });
 
 apolloClient.writeQuery({
-  query: textQuery,
+  query: allLocalDataQuery,
   data: {
     text: 'Hello, world!',
+    date: new Date(),
+    complex: {
+      hello: {
+        world: '!',
+      },
+    },
   },
 });
 

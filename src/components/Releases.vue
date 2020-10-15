@@ -27,12 +27,20 @@
       <input v-model="textToAdd" class="mt-2 mb-3" />
       <button>Add text</button>
     </form>
+    <p class="mt-6">
+      date: <b>{{ dateFormatted }}</b>
+    </p>
+    <p class="mt-4">
+      a complex object: <b>{{ complex }}</b>
+    </p>
   </div>
 </template>
 
 <script>
 import releasesQuery from '../graphql/queries/releases.query.graphql';
 import textQuery from '../graphql/queries/text.query.graphql';
+import dateQuery from '../graphql/queries/date.query.graphql';
+import complexQuery from '../graphql/queries/complex.query.graphql';
 import addToTextMutation from '../graphql/mutations/addToText.mutation.graphql';
 import updateReleaseAwesomeness from '../graphql/mutations/updateReleaseAwesomeness.graphql';
 
@@ -49,9 +57,15 @@ export default {
     releases: {
       query: releasesQuery,
       update: data => data.project?.releases.nodes || [],
-      fetchPolicy: 'cache-only',
     },
     text: textQuery,
+    date: dateQuery,
+    complex: complexQuery,
+  },
+  computed: {
+    dateFormatted() {
+      return this.date?.toLocaleDateString('en-CA') || '';
+    },
   },
   methods: {
     onToggleAwesomenessClick(tagName, isCurrentlyAwesome) {
